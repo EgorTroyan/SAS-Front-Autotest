@@ -1,8 +1,8 @@
 package db.entity;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Enrollments")
@@ -11,39 +11,39 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Enrollment_ID")
-    private int id;
+    private long id;
 
     @Column(name="Enrollment_String")
     private String string;
 
     @Column(name="Enrollment_UserID")
-    private int userId;
+    private long userId;
 
     @Column(name="Enrollment_TokenType")
-    private int tokenType;
+    private long tokenType;
 
     @Column(name="Enrollment_TokenID")
-    private int tokenId;
+    private long tokenId;
 
     @Column(name="Enrollment_OrgID")
-    private int  orgId;
+    private long orgId;
 
     @Column(name="Enrollment_StartDateTime")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Column(name="Enrollment_StopDateTime")
-    private LocalDate stopDate;
+    private LocalDateTime stopDate;
 
     @Column(name="Enrollment_FailedAttempts")
-    private int failedAttempts;
+    private long failedAttempts;
 
     @Column(name="Enrollment_OwnerID")
-    private int ownerId;
+    private long ownerId;
 
     public Enrollment() {
     }
 
-    public Enrollment(String string, int userId, int tokenType, int orgId, LocalDate startDate, LocalDate stopDate, int ownerId) {
+    public Enrollment(String string, long userId, long tokenType, long orgId, LocalDateTime startDate, LocalDateTime stopDate, long ownerId) {
         this.string = string;
         this.userId = userId;
         this.tokenType = tokenType;
@@ -54,11 +54,11 @@ public class Enrollment {
         this.ownerId = ownerId;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -70,67 +70,67 @@ public class Enrollment {
         this.string = string;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public int getTokenType() {
+    public long getTokenType() {
         return tokenType;
     }
 
-    public void setTokenType(int tokenType) {
+    public void setTokenType(long tokenType) {
         this.tokenType = tokenType;
     }
 
-    public int getTokenId() {
+    public long getTokenId() {
         return tokenId;
     }
 
-    public void setTokenId(int tokenId) {
+    public void setTokenId(long tokenId) {
         this.tokenId = tokenId;
     }
 
-    public int getOrgId() {
+    public long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(int orgId) {
+    public void setOrgId(long orgId) {
         this.orgId = orgId;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getStopDate() {
+    public LocalDateTime getStopDate() {
         return stopDate;
     }
 
-    public void setStopDate(LocalDate stopDate) {
+    public void setStopDate(LocalDateTime stopDate) {
         this.stopDate = stopDate;
     }
 
-    public int getFailedAttempts() {
+    public long getFailedAttempts() {
         return failedAttempts;
     }
 
-    public void setFailedAttempts(int failedAttempts) {
+    public void setFailedAttempts(long failedAttempts) {
         this.failedAttempts = failedAttempts;
     }
 
-    public int getOwnerId() {
+    public long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(long ownerId) {
         this.ownerId = ownerId;
     }
 

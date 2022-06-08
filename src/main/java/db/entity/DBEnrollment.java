@@ -4,34 +4,38 @@ import common.DBConnection;
 import org.hibernate.Session;
 
 public class DBEnrollment {
-    private final Session session;
+
     private final DBConnection connection;
     private Enrollment enrollment;
 
     public DBEnrollment(Enrollment enrollment) {
         this.enrollment = enrollment;
         connection = new DBConnection();
-        session = connection.getSession();
     }
 
     public void prepareDB() {
-                try {
+                //try {
+            Session session = connection.getSession();
             session.beginTransaction();
             session.persist(enrollment);
             session.getTransaction().commit();
-        } catch (Exception e){
-            closeFactory();
-        }
+        System.out.println(enrollment);
+        //} catch (Exception e){
+         //           System.out.println(e);
+         //   closeFactory();
+       //}
     }
 
     public void cleanTestDataAfterTests() {
-        try {
+        //try {
+            Session session = connection.getSession();
             session.beginTransaction();
-            session.detach(enrollment);
+        System.out.println(enrollment);
+            session.delete(enrollment);
             session.getTransaction().commit();
-        } catch (Exception e) {
-            closeFactory();
-        }
+        //} catch (Exception e) {
+         //   closeFactory();
+        //}
     }
 
     public void closeFactory(){

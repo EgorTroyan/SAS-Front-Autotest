@@ -6,12 +6,11 @@ import db.entity.Enrollment;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class YandexSearchTest extends BaseTest {
-    protected LocalDate currentDate = LocalDate.now();
-    protected LocalDate stopDate = currentDate.plusDays(3);
+    protected LocalDateTime currentDate = LocalDateTime.now();
+    protected LocalDateTime stopDate = currentDate.plusDays(3);
     protected Enrollment enrollment = new Enrollment(
             new EnrollmentString().generateEnrollmentString(32)
             , 6, 1, 1, currentDate, stopDate, 6);
@@ -20,7 +19,7 @@ public class YandexSearchTest extends BaseTest {
     @Test
     public void test1() {
        dbEnrollment.prepareDB();
-       dbEnrollment.closeFactory();
+       //dbEnrollment.closeFactory();
     }
 
     @Test
