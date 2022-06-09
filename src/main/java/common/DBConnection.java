@@ -12,10 +12,11 @@ import java.util.Properties;
 
 public class DBConnection {
 
+    private static DBConnection connection;
     private final SessionFactory factory;
     private static final String DB_CONFIG = "config.properties";
 
-    public DBConnection(){
+    private DBConnection(){
         Properties properties = new Properties();
         TestsConfig config = TestsConfig.getConfig();
         properties.put(Environment.DRIVER, config.getProperty("hibernate.connection.driver_class"));
@@ -30,6 +31,13 @@ public class DBConnection {
                 .setProperties(properties)
                 .addAnnotatedClass(Enrollment.class)
                 .buildSessionFactory();
+    }
+
+    public static DBConnection getConnection(){
+        if(connection == null) {
+            connection = new DBConnection();
+        }
+        return connection;
     }
 
     public Session getSession() {

@@ -10,7 +10,7 @@ public class DBEnrollment {
 
     public DBEnrollment(Enrollment enrollment) {
         this.enrollment = enrollment;
-        connection = new DBConnection();
+        connection = DBConnection.getConnection();
     }
 
     public void prepareDB() {

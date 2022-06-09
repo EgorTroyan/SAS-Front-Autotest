@@ -16,13 +16,13 @@ public class YandexSearchTest extends BaseTest {
             , 6, 1, 1, currentDate, stopDate, 6);
     protected DBEnrollment dbEnrollment = new DBEnrollment(enrollment);
 
-    @Test
+
     public void test1() {
        dbEnrollment.prepareDB();
        //dbEnrollment.closeFactory();
     }
 
-    @Test
+
     public void test2() {
         dbEnrollment.cleanTestDataAfterTests();
         dbEnrollment.closeFactory();

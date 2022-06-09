@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All test suite">
-    <test verbose="2" preserve-order="true" name="SAS-Front-Autotest">
+    <test verbose="2" preserve-order="true" name="Bad-Enrollment">
         <classes>
-            <class name="tests.yandexsearch.YandexSearchTest"></class>
+            <class name="tests.portalcertsysenrollment.BadEnrollmentPagesTest"></class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Expired-Enrollment">
+        <classes>
+            <class name="tests.portalcertsysenrollment.ExpiredEnrollmentPagesTest"></class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="True-Enrollment">
+        <classes>
+            <class name="tests.portalcertsysenrollment.TrueEnrollmentPagesTest"></class>
         </classes>
     </test>
 </suite>
