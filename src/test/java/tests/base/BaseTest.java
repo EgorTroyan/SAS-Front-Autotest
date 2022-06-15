@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 
 public class BaseTest {
     protected WebDriver driver = CommonAction.createDriver();
-    protected BasePage basePage = new BasePage(driver);
+    //protected BasePage basePage = new BasePage(driver);
     protected EnrollmentPage enrollmentPage = new EnrollmentPage(driver);
     protected TestsConfig config = TestsConfig.getConfig();
 
@@ -29,13 +29,18 @@ public class BaseTest {
     protected Enrollment expiredEnrollment = new Enrollment(
             new EnrollmentString().generateEnrollmentString(32)
             , 6, 1, 1, currentDate.minusDays(5), stopDate.minusDays(5), 6);
+    protected Enrollment enrollmentForKeys = new Enrollment(
+            new EnrollmentString().generateEnrollmentString(32)
+            , 6, 1, 1, currentDate, stopDate, 6);
     protected DBEnrollment dbEnrollment = new DBEnrollment(enrollment);
     protected DBEnrollment dbExEnrollment = new DBEnrollment(expiredEnrollment);
+    protected DBEnrollment dbKeyEnrollment = new DBEnrollment(enrollmentForKeys);
 
     @BeforeSuite
     public void beforeStart() {
         dbEnrollment.prepareDB();
         dbExEnrollment.prepareDB();
+        dbKeyEnrollment.prepareDB();
     }
 
     @AfterTest
@@ -44,7 +49,7 @@ public class BaseTest {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void quit(){
+    public void quit() {
         driver.quit();
     }
 
@@ -52,7 +57,9 @@ public class BaseTest {
     public void afterTests() {
         dbEnrollment.cleanTestDataAfterTests();
         dbExEnrollment.cleanTestDataAfterTests();
+        dbKeyEnrollment.cleanTestDataAfterTests();
         dbEnrollment.closeFactory();
         dbExEnrollment.closeFactory();
+        dbKeyEnrollment.closeFactory();
     }
 }

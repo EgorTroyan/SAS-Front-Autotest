@@ -13,6 +13,15 @@ public class DBEnrollment {
         connection = DBConnection.getConnection();
     }
 
+    public void resetAttempts(){
+        Session session = connection.getSession();
+        session.beginTransaction();
+        //Enrollment temp = session.get(Enrollment.class, enrollment);
+        enrollment.setFailedAttempts(0);
+        session.merge(enrollment);
+        session.getTransaction().commit();
+    }
+
     public void prepareDB() {
                 //try {
             Session session = connection.getSession();

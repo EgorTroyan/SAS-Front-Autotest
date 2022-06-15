@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All test suite">
-    <test verbose="2" preserve-order="true" name="Bad-Enrollment">
-        <classes>
-            <class name="tests.portalcertsysenrollment.BadEnrollmentPagesTest"></class>
-        </classes>
-    </test>
+<suite name="All test suite" parallel="false">
+
     <test verbose="2" preserve-order="true" name="Expired-Enrollment">
         <classes>
             <class name="tests.portalcertsysenrollment.ExpiredEnrollmentPagesTest"></class>
         </classes>
     </test>
-    <test verbose="2" preserve-order="true" name="True-Enrollment">
+
+    <test verbose="2" preserve-order="true" name="Bad-Enrollment">
         <classes>
-            <class name="tests.portalcertsysenrollment.TrueEnrollmentPagesTest"></class>
+            <class name="tests.portalcertsysenrollment.BadEnrollmentPagesTest"></class>
+<!--            <class name="tests.portalcertsysenrollment.ExpiredEnrollmentPagesTest"></class>-->
         </classes>
     </test>
+
+<!--    <test verbose="2" preserve-order="true" name="True-Enrollment">-->
+<!--        <classes>-->
+<!--            <class name="tests.portalcertsysenrollment.TrueEnrollmentPagesTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test verbose="2" preserve-order="true" name="Key_Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.portalcertsysenrollment.KeyTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

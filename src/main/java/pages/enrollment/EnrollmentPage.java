@@ -16,8 +16,10 @@ public class EnrollmentPage extends BasePage {
     By text = By.xpath("//div");
     By input = By.xpath(config.getProperty("xpath.first.login_page.input_text"));
     By submit = By.xpath(config.getProperty("xpath.first.login_page.submit"));
+    By inputOTP1 = By.xpath(config.getProperty("xpath.first.otp_page.otp1"));
+    By inputOTP2 = By.xpath(config.getProperty("xpath.first.otp_page.otp2"));
 
-    public void openPageWithIncorrectData(String whatFind) {
+    public EnrollmentPage openPageWithIncorrectData(String whatFind) {
         waitWebElement(driver.findElement(text));
         List<WebElement> divs = driver.findElements(text);
         boolean isCorrect = false;
@@ -29,12 +31,23 @@ public class EnrollmentPage extends BasePage {
         }
         Assert.assertTrue(isCorrect
                 , "Неудачная проверка на: " + whatFind);
+        return this;
     }
 
     public EnrollmentPage openPageWithCorrectEnrollment() {
         waitWebElement(driver.findElement(input));
         WebElement div = driver.findElement(input);
         boolean isCorrect = div.isDisplayed();
+        Assert.assertTrue(isCorrect
+                , "Страница enrollment не загружается с корректной ссылкой");
+        return this;
+    }
+
+    public EnrollmentPage openPageWithCorrectKey() {
+        waitWebElement(driver.findElement(inputOTP1));
+        WebElement otp1 = driver.findElement(inputOTP1);
+        WebElement otp2 = driver.findElement(inputOTP2);
+        boolean isCorrect = otp1.isDisplayed() & otp2.isDisplayed();
         Assert.assertTrue(isCorrect
                 , "Страница enrollment не загружается с корректной ссылкой");
         return this;
