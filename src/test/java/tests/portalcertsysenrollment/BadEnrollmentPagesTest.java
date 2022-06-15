@@ -2,25 +2,26 @@ package tests.portalcertsysenrollment;
 
 
 import org.testng.annotations.Test;
-import pages.base.BasePage;
 import tests.base.BaseTest;
 
 public class BadEnrollmentPagesTest extends BaseTest {
-
-    private final String URL = config.getProperty("text.URL") + expiredEnrollment.getString();
-    private final BasePage basePage = new BasePage(driver);
+    private final String URL = config.getProperty("text.URL") + dbEnrollment.getExpEnrollment().getString();
 
 
 
     @Test
     public void checkBadEnrollment(){
-        basePage.openURL(URL.substring(0, config.getProperty("text.URL").length() + 7));
-        enrollmentPage.openPageWithIncorrectData(config.getProperty("text.incorrect_enrollment.id_not_found"));
+        System.out.println("BadEnrollmentPagesTest:\n" + dbEnrollment.getExpEnrollment());
+        System.out.println("BadEnrollmentPagesTest URL:\n" + URL);
+        enrollmentPage.openURL(URL.substring(0, config.getProperty("text.URL").length() + 7));
+        enrollmentPage.findData(config.getProperty("text.incorrect_enrollment.id_not_found"));
     }
 
-    //@Test
+    @Test
     public void checkExpiredEnrollment(){
-        basePage.openURL(URL);
-        enrollmentPage.openPageWithIncorrectData(config.getProperty("text.incorrect_enrollment.has_expired"));
+        System.out.println("ExpiredEnrollmentPagesTest:\n" + dbEnrollment.getExpEnrollment());
+        System.out.println("ExpiredEnrollmentPagesTest URL:\n" + URL);
+        enrollmentPage.openURL(URL);
+        enrollmentPage.findData(config.getProperty("text.incorrect_enrollment.has_expired"));
     }
 }

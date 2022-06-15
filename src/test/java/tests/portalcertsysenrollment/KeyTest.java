@@ -5,12 +5,12 @@ import tests.base.BaseTest;
 
 public class KeyTest extends BaseTest {
 
-    private final String URL = config.getProperty("text.URL") + enrollmentForKeys.getString();
+    private final String URL = config.getProperty("text.URL") + dbEnrollment.getForKeyEnrollment().getString();
 
-    //@Test
+    @Test
     public void checkCorrectKeyEnrollment(){
         //dbEnrollment.resetAttempts();
-        //basePage.openURL(URL);
+        enrollmentPage.openURL(URL);
         enrollmentPage
                 .enterKeyNumber(config.getProperty("test_key.number"))
                 .clickSubmit()

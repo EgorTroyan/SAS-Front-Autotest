@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import org.hibernate.mapping.Property;
 
 import java.util.Properties;
 
@@ -14,7 +13,6 @@ public class DBConnection {
 
     private static DBConnection connection;
     private final SessionFactory factory;
-    private static final String DB_CONFIG = "config.properties";
 
     private DBConnection(){
         Properties properties = new Properties();

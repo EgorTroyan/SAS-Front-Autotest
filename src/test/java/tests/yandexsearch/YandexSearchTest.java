@@ -9,23 +9,23 @@ import tests.base.BaseTest;
 import java.time.LocalDateTime;
 
 public class YandexSearchTest extends BaseTest {
-    protected LocalDateTime currentDate = LocalDateTime.now();
-    protected LocalDateTime stopDate = currentDate.plusDays(3);
-    protected Enrollment enrollment = new Enrollment(
-            new EnrollmentString().generateEnrollmentString(32)
-            , 6, 1, 1, currentDate, stopDate, 6);
-    protected DBEnrollment dbEnrollment = new DBEnrollment(enrollment);
-
-
-    public void test1() {
-       dbEnrollment.prepareDB();
-       //dbEnrollment.closeFactory();
-    }
-
-
-    public void test2() {
-        dbEnrollment.cleanTestDataAfterTests();
-        dbEnrollment.closeFactory();
-
-    }
+//    protected LocalDateTime currentDate = LocalDateTime.now();
+//    protected LocalDateTime stopDate = currentDate.plusDays(3);
+//    protected Enrollment enrollment = new Enrollment(
+//            new EnrollmentString().generateEnrollmentString(32)
+//            , 6, 1, 1, currentDate, stopDate, 6);
+//    protected DBEnrollment dbEnrollment = new DBEnrollment(enrollment);
+//
+//
+//    public void test1() {
+//       dbEnrollment.prepareDB();
+//       //dbEnrollment.closeFactory();
+//    }
+//
+//
+//    public void test2() {
+//        dbEnrollment.cleanTestDataAfterTests();
+//        dbEnrollment.closeFactory();
+//
+//    }
 }

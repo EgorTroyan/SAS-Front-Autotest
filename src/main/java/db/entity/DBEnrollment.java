@@ -1,50 +1,69 @@
 package db.entity;
 
 import common.DBConnection;
+import common.EnrollmentString;
 import org.hibernate.Session;
+
+import java.time.LocalDateTime;
 
 public class DBEnrollment {
 
+    private static DBEnrollment dbEnrollment;
     private final DBConnection connection;
-    private Enrollment enrollment;
+    private final Enrollment enrollment;
+    private final Enrollment expEnrollment;
+    private final Enrollment forKeyEnrollment;
 
-    public DBEnrollment(Enrollment enrollment) {
-        this.enrollment = enrollment;
+
+    private DBEnrollment() {
+        enrollment = new Enrollment(
+                new EnrollmentString().generateEnrollmentString(32)
+                , 6, 1, 1, LocalDateTime.now(), LocalDateTime.now().plusDays(3), 6);
+        expEnrollment = new Enrollment(
+                new EnrollmentString().generateEnrollmentString(32)
+                , 6, 1, 1, LocalDateTime.now().minusDays(5), LocalDateTime.now().minusDays(2), 6);
+        forKeyEnrollment = new Enrollment(
+                new EnrollmentString().generateEnrollmentString(32)
+                , 6, 1, 1, LocalDateTime.now(), LocalDateTime.now().plusDays(3), 6);
         connection = DBConnection.getConnection();
     }
 
-    public void resetAttempts(){
-        Session session = connection.getSession();
-        session.beginTransaction();
-        //Enrollment temp = session.get(Enrollment.class, enrollment);
-        enrollment.setFailedAttempts(0);
-        session.merge(enrollment);
-        session.getTransaction().commit();
+    public static DBEnrollment getDBEnrollment(){
+        if(dbEnrollment == null) {
+            dbEnrollment = new DBEnrollment();
+        }
+        return dbEnrollment;
+    }
+
+    public Enrollment getTrueEnrollment() {
+        return enrollment;
+    }
+
+    public Enrollment getExpEnrollment() {
+        return expEnrollment;
+    }
+
+    public Enrollment getForKeyEnrollment() {
+        return forKeyEnrollment;
     }
 
     public void prepareDB() {
-                //try {
-            Session session = connection.getSession();
-            session.beginTransaction();
-            session.persist(enrollment);
-            session.getTransaction().commit();
-        System.out.println(enrollment);
-        //} catch (Exception e){
-         //           System.out.println(e);
-         //   closeFactory();
-       //}
+        Session session = connection.getSession();
+        session.beginTransaction();
+        session.persist(enrollment);
+        session.persist(expEnrollment);
+        session.persist(forKeyEnrollment);
+        session.getTransaction().commit();
     }
 
     public void cleanTestDataAfterTests() {
-        //try {
-            Session session = connection.getSession();
-            session.beginTransaction();
-        System.out.println(enrollment);
-            session.delete(enrollment);
-            session.getTransaction().commit();
-        //} catch (Exception e) {
-         //   closeFactory();
-        //}
+
+        Session session = connection.getSession();
+        session.beginTransaction();
+        session.remove(enrollment);
+        session.remove(expEnrollment);
+        session.remove(forKeyEnrollment);
+        session.getTransaction().commit();
     }
 
     public void closeFactory(){

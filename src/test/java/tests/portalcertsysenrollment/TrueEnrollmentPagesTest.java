@@ -1,34 +1,25 @@
 package tests.portalcertsysenrollment;
 
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import pages.base.BasePage;
 import tests.base.BaseTest;
-
-import java.time.Duration;
 
 public class TrueEnrollmentPagesTest extends BaseTest {
 
-    private final String URL = config.getProperty("text.URL") + enrollment.getString();
-    private final BasePage basePage = new BasePage(driver);
+    private final String URL = config.getProperty("text.URL") + dbEnrollment.getTrueEnrollment().getString();
 
 
     public void checkKeyName(String key, String whatFind){
         enrollmentPage
                 .enterKeyNumber(key)
                 .clickSubmit()
-                .openPageWithIncorrectData(whatFind);
-    }
-
-    public void restoreAttempts(){
-       dbEnrollment.resetAttempts();
+                .findData(whatFind);
     }
 
     @Test
     public void checkTrueEnrollment(){
-        basePage.openURL(URL);
-        enrollmentPage.openPageWithCorrectEnrollment();
+        enrollmentPage.openURL(URL);
+        enrollmentPage.checkPageWithCorrectEnrollment();
     }
 
     @Test (dependsOnMethods = {"checkTrueEnrollment"})
@@ -54,8 +45,8 @@ public class TrueEnrollmentPagesTest extends BaseTest {
             checkIncorrectKeyNameThreeTimes();
             count++;
         }
-        basePage.openURL(URL);
-        enrollmentPage.openPageWithIncorrectData(config.getProperty("text.incorrect_enrollment.to_many_failed_attempts"));
+        enrollmentPage.openURL(URL);
+        enrollmentPage.findData(config.getProperty("text.incorrect_enrollment.to_many_failed_attempts"));
     }
 
 
